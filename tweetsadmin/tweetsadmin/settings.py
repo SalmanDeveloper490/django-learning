@@ -38,7 +38,19 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+      'django_browser_reload',
+    'theme',
+    'tailwind',
+    'tweetsapp',
 ]
+
+TAILWIND_APP_NAME = 'theme' # This is the name of the app that will be used to generate the tailwind files
+INTERNAL_IPS = ['127.0.0.1']
+
+NPM_BIN_PATH = '/usr/local/bin/npm'
+
+# for windows
+NPM_BIN_PATH = r"C:\Program Files\nodejs\npm.cmd"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -48,6 +60,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+     'django_browser_reload.middleware.BrowserReloadMiddleware',
 ]
 
 ROOT_URLCONF = 'tweetsadmin.urls'
@@ -55,7 +68,7 @@ ROOT_URLCONF = 'tweetsadmin.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -125,3 +138,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+STATIC_URL = 'static/'
+STATICFILESDIRS = [os.path.join(BASE_DIR, 'static')]
